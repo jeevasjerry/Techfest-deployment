@@ -8,7 +8,10 @@ require("dotenv").config();
 const app = express();
 
 app.use(cors({
-origin: process.env.CLIENT_ORIGIN || "http://localhost:5173"
+  origin: [
+    "http://localhost:5173",
+    "https://techfest2026-jeeva.netlify.app"
+  ]
 }));
 
 app.use(express.json());
