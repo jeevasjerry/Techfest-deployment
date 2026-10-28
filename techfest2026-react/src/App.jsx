@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Registration from "./pages/Registration";
-import Login from "./pages/Loginj.jsx";
+import Login from "./pages/Login.jsx";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
