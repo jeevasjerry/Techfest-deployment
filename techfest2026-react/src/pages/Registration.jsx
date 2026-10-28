@@ -36,34 +36,39 @@ if (Object.keys(newErrors).length !== 0) {
 setLoading(true);
 
 try {
-  const response = await fetch("http://localhost:5000/api/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: name.trim(),
-      email: email.trim(),
-      phone: phone.trim(),
-    }),
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Registration failed");
-  }
-
-  setSubmitted(true);
-} catch (error) {
-  setServerError(
-    error.message === "Failed to fetch"
-      ? "Cannot connect to the backend. Check that your server is running."
-      : error.message
-  );
-} finally {
-  setLoading(false);
+const response = await fetch(
+`${import.meta.env.VITE_API_URL}/api/register`,
+{
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+},
+body: JSON.stringify({
+name: name.trim(),
+email: email.trim(),
+phone: phone.trim(),
+}),
 }
+);
+
+const data = await response.json();
+
+if (!response.ok) {
+throw new Error(data.message || "Registration failed");
+}
+
+setSubmitted(true);
+
+} catch (error) {
+setServerError(
+error.message === "Failed to fetch"
+? "Cannot connect to the backend. Check your connection."
+: error.message
+);
+} finally {
+setLoading(false);
+}
+
 
 
 }
