@@ -1,8 +1,10 @@
-﻿import { Routes, Route } from "react-router-dom";
+﻿
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Registration from "./pages/Registration";
+import Login from "./pages/login";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -14,10 +16,12 @@ function App() {
   return (
     <div className={theme}>
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
@@ -27,3 +31,4 @@ function App() {
 }
 
 export default App;
+
