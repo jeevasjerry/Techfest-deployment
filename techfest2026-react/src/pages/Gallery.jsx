@@ -1,20 +1,3 @@
-﻿function Gallery() {
-  const images = [
-    "https://picsum.photos/seed/techfest1/300/200",
-    "https://picsum.photos/seed/techfest2/300/200",
-    "https://picsum.photos/seed/techfest3/300/200"
-  ];
-
-  return (
-    <div className="page">
-      <h1>Gallery</h1>
-      <div className="gallery-grid">
-        {images.map((src, index) => (
-          <img key={index} src={src} alt="TechFest" />
-        ))}
-      </div>
-    </div>
-  );
-}
-
+const moments=[{icon:"💡",title:"Ideas in motion",text:"Brainstorming, building and bold experiments."},{icon:"🛠️",title:"Made by you",text:"Hands-on sessions that turn curiosity into skills."},{icon:"🤝",title:"Better together",text:"Meet collaborators, mentors and new friends."},{icon:"🚀",title:"Big energy",text:"A campus buzzing with creativity and possibility."},{icon:"🎨",title:"Creative sparks",text:"Technology and imagination in the same room."},{icon:"🏆",title:"Celebrate the build",text:"Share what you made and cheer each other on."}];
+function Gallery(){return <main className="page"><span className="eyebrow">Little moments, big ideas</span><h1 className="page-title">The festival, <span style={{color:"var(--pink-dark)"}}>in colour.</span></h1><p style={{color:"var(--muted)",lineHeight:1.8,maxWidth:620}}>A glimpse of the energy we’re bringing to campus: creative minds, hands-on learning and community.</p><div className="gallery-grid" style={{marginTop:30}}>{moments.map((m,i)=><article className="gallery-tile" key={m.title} style={{animationDelay:`${i*70}ms`}}><span>{m.icon}</span><h3>{m.title}</h3><p style={{margin:"0",lineHeight:1.6}}>{m.text}</p></article>)}</div><p className="announcement" style={{marginTop:25}}>✦ Gallery highlights are illustrative. Come be part of the memories at TechFest 2026!</p></main>}
 export default Gallery;

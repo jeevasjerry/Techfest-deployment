@@ -1,39 +1,9 @@
-﻿import { useState, useEffect } from "react";
-
-function Home() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts?_limit=3")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("Could not load announcements");
-        setLoading(false);
-      });
-  }, []);
-
-  return (
-    <div className="page">
-      <h1>Welcome to TechFest 2026</h1>
-      <p>Three days of hackathons, workshops and competitions.</p>
-      <h2>Announcements</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p className="error-msg">{error}</p>}
-      {!loading && !error && (
-        <ul>
-          {posts.map((post) => (
-            <li key={post.id}>{post.title}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+import { Link } from "react-router-dom";
+import events from "../data/events";
+function Home(){
+ const icons={Technical:"⌘",Workshop:"✦",Cultural:"♫",Sports:"⚡"};
+ return <><main className="page app-main"><section className="hero"><div className="hero-copy"><span className="eyebrow">✦ MBCET presents · 2026</span><h1>Make ideas<br/> <em>happen.</em></h1><p>Three days of bold thinking, brilliant builds and unforgettable moments. Meet your people, find your spark, and create something extraordinary.</p><div className="hero-actions"><Link className="btn btn-primary" to="/register">Join the festival ↗</Link><Link className="btn btn-secondary" to="/events">Explore events</Link></div><div className="stats"><div className="stat"><strong>03</strong><span>Days of discovery</span></div><div className="stat"><strong>12+</strong><span>Experiences</span></div><div className="stat"><strong>∞</strong><span>Ideas to explore</span></div></div></div><div className="hero-visual"><div className="orbit"></div><div className="hero-art"><div className="art-top">MBCET · THIRUVANANTHAPURAM</div><div className="art-title">Think.<br/>Create.<br/>Connect.</div><div className="art-bottom"><span>TECHFEST<br/>2026</span><span>EST. FOR<br/>THE CURIOUS ✳</span></div></div></div></section>
+ <section className="section-head"><div><span className="eyebrow">Find your thing</span><h2>Something for every curious mind.</h2><p>Discover the experiences waiting for you.</p></div><Link className="btn btn-secondary" to="/events">All events ↗</Link></section><div className="event-grid">{events.slice(0,3).map(e=><article className="event-card" key={e.id}><div className="event-icon">{icons[e.category]||"✦"}</div><span className="pill">{e.category}</span><h3>{e.name}</h3><p>Bring your curiosity, meet a team and turn a fresh idea into a memorable experience.</p><strong>{e.fee===0?"Free entry":`₹${e.fee}`} </strong></article>)}</div>
+ <section className="section-head"><div><span className="eyebrow">A little heads-up</span><h2>Before you arrive</h2></div></section><div className="announcement">✦ <strong>Come curious.</strong> Bring your student ID, your best ideas, and a friend who loves to build things.</div><div className="announcement">♡ <strong>Save your spot.</strong> Register online to get started and keep an eye out for event updates.</div></main><footer className="footer">Made for curious minds · <strong>TechFest 2026</strong> · MBCET, Thiruvananthapuram</footer></>;
 }
-
 export default Home;

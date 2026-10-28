@@ -1,40 +1,4 @@
-﻿import { useState } from "react";
-import EventList from "../components/EventList";
-import events from "../data/events";
-
-function Events() {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
-
-  const filteredEvents = events.filter((event) => {
-    const nameMatches = event.name.toLowerCase().includes(search.toLowerCase());
-    const categoryMatches =
-      category === "All" || event.category === category;
-    return nameMatches && categoryMatches;
-  });
-
-  return (
-    <div className="page">
-      <h1>Events</h1>
-      <input
-        type="text"
-        placeholder="Search events..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option value="All">All</option>
-        <option value="Technical">Technical</option>
-        <option value="Workshop">Workshop</option>
-        <option value="Cultural">Cultural</option>
-        <option value="Sports">Sports</option>
-      </select>
-      <EventList events={filteredEvents} />
-    </div>
-  );
-}
-
+import { useMemo,useState } from "react";import events from "../data/events";
+const icons={Technical:"⌘",Workshop:"✦",Cultural:"♫",Sports:"⚡"};
+function Events(){const [search,setSearch]=useState("");const [category,setCategory]=useState("All");const filtered=useMemo(()=>events.filter(e=>e.name.toLowerCase().includes(search.toLowerCase())&&(category==="All"||e.category===category)),[search,category]);return <main className="page"><span className="eyebrow">The festival lineup</span><h1 className="page-title">Find your next <span style={{color:"var(--pink-dark)"}}>favourite.</span></h1><p style={{color:"var(--muted)",maxWidth:620,lineHeight:1.8}}>From hands-on workshops to friendly competition, explore the experiences that make TechFest special.</p><div className="toolbar"><input aria-label="Search events" placeholder="⌕  Search events..." value={search} onChange={e=>setSearch(e.target.value)}/><select aria-label="Filter by category" value={category} onChange={e=>setCategory(e.target.value)}><option>All</option><option>Technical</option><option>Workshop</option><option>Cultural</option><option>Sports</option></select></div><p style={{color:"var(--muted)"}}>{filtered.length} experience{filtered.length===1?"":"s"} found</p><div className="event-grid">{filtered.map(e=><article className="event-card" key={e.id}><div className="event-icon">{icons[e.category]||"✦"}</div><span className="pill">{e.category}</span><h3>{e.name}</h3><p>A chance to learn, experiment, collaborate and show what you can do.</p><p>◷ Event day · MBCET Campus</p><strong>{e.fee===0?"Free entry":`₹${e.fee}`} </strong></article>)}</div>{!filtered.length&&<div className="announcement">No events match that search. Try another name or category.</div>}</main>}
 export default Events;

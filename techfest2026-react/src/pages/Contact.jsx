@@ -1,12 +1,3 @@
-﻿function Contact() {
-  return (
-    <div className="page">
-      <h1>Contact Us</h1>
-      <p>Email: techfest2026@mbcet.ac.in</p>
-      <p>Phone: +91 98765 43210</p>
-      <p>Venue: MBCET Campus, Thiruvananthapuram</p>
-    </div>
-  );
-}
-
+import {Link} from "react-router-dom";
+function Contact(){return <main className="page"><span className="eyebrow">We'd love to hear from you</span><h1 className="page-title">Let's <span style={{color:"var(--pink-dark)"}}>connect.</span></h1><p style={{color:"var(--muted)",lineHeight:1.8,maxWidth:620}}>Need help with registration or have a question about an event? Here are the best ways to reach the TechFest team.</p><div className="contact-grid" style={{marginTop:28}}><article className="contact-card"><div className="event-icon">✉</div><h3>Email the team</h3><p>For registration and general enquiries.</p><a className="btn btn-secondary" href="mailto:techfest2026@mbcet.ac.in">Send an email ↗</a></article><article className="contact-card"><div className="event-icon">⌖</div><h3>Find the venue</h3><p>MBCET Campus<br/>Thiruvananthapuram, Kerala</p><a className="btn btn-secondary" href="https://maps.google.com/?q=Mar+Baselios+College+of+Engineering+and+Technology+Trivandrum" target="_blank" rel="noreferrer">View on map ↗</a></article><article className="contact-card"><div className="event-icon">✦</div><h3>Ready to join?</h3><p>Secure your spot and be part of the experience.</p><Link className="btn btn-primary" to="/register">Register now ↗</Link></article></div></main>}
 export default Contact;
